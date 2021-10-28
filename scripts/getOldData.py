@@ -94,14 +94,9 @@ conn.commit()
 
 #dataframe insert 위한 execute_many 함수 define
 def execute_many(conn, df, table):
-    """
-    Using cursor.executemany() to insert the dataframe
-    """
-    # Create a list of tupples from the dataframe values
     tuples = [tuple(x) for x in df.to_numpy()]
-    # Comma-separated dataframe columns
     cols = ','.join(list(df.columns))
-    # SQL quert to execute
+    # SQL
     query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s,%%s,%%s,%%s,%%s,%%s)" % (table, cols)
     print(query)
     cursor = conn.cursor()
