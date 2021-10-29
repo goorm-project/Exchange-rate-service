@@ -3,10 +3,9 @@ from urllib.parse import urlparse
 import pandas as pd
 from pandas import json_normalize
 import psycopg2
-import numpy as np
 
 
-AUTHKEY = <YOUR_KEY>
+AUTHKEY = ''
 
 #psycopg2
 #API 테스트
@@ -14,7 +13,6 @@ AUTHKEY = <YOUR_KEY>
 #response = requests.get(urlparse(url).geturl())
 #result = response.json()
 #json_normalize(result)
-
 
 
 #10월 데이터 입력
@@ -38,29 +36,31 @@ for day in range(1,28):
         temp = json_normalize(res)
         october = october.append(temp)
 
-october.index = october['date']
+
 
 #통화별 dataframe 생성
-AED =  october[october['cur_unit'] == 'AED'].iloc[:,1:-3]
-AUD =  october[october['cur_unit'] == 'AUD'].iloc[:,1:-3]
-CAD =  october[october['cur_unit'] == 'CAD'].iloc[:,1:-3]
-CNH =  october[october['cur_unit'] == 'CNH'].iloc[:,1:-3]
-EUR =  october[october['cur_unit'] == 'EUR'].iloc[:,1:-3]
-GBP =  october[october['cur_unit'] == 'GBP'].iloc[:,1:-3]
-HKD =  october[october['cur_unit'] == 'HKD'].iloc[:,1:-3]
-JPY_100 =  october[october['cur_unit'] == 'JPY(100)'].iloc[:,1:-3]
-KRW =  october[october['cur_unit'] == 'KRW'].iloc[:,1:-3]
-USD = october[october['cur_unit'] == 'USD'].iloc[:,1:-3]
+AED =  october[october['cur_unit'] == 'AED'].iloc[:,:-3]
+AUD =  october[october['cur_unit'] == 'AUD'].iloc[:,:-3]
+CAD =  october[october['cur_unit'] == 'CAD'].iloc[:,:-3]
+CNH =  october[october['cur_unit'] == 'CNH'].iloc[:,:-3]
+EUR =  october[october['cur_unit'] == 'EUR'].iloc[:,:-3]
+GBP =  october[october['cur_unit'] == 'GBP'].iloc[:,:-3]
+HKD =  october[october['cur_unit'] == 'HKD'].iloc[:,:-3]
+JPY_100 =  october[october['cur_unit'] == 'JPY(100)'].iloc[:,:-3]
+KRW =  october[october['cur_unit'] == 'KRW'].iloc[:,:-3]
+USD = october[october['cur_unit'] == 'USD'].iloc[:,:-3]
+
 
 
 #aws rds connect 위한 인증 정보
 param_dic = {
-    "host"      : "",
-    "dbname"  : "",
-    "user"      : "",
-    "password"  : "",
-    "port" : ""
+    "host": 
+    "dbname": 
+    "user": 
+    "password": 
+    "port": 
 }
+
 
 #connect 함수 define
 def connect(params_dic):
@@ -97,7 +97,7 @@ def execute_many(conn, df, table):
     tuples = [tuple(x) for x in df.to_numpy()]
     cols = ','.join(list(df.columns))
     # SQL
-    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s,%%s,%%s,%%s,%%s,%%s)" % (table, cols)
+    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s,%%s,%%s,%%s,%%s,%%s,%%s)" % (table, cols)
     print(query)
     cursor = conn.cursor()
     try:
