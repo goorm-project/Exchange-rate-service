@@ -21,7 +21,8 @@ def getTodayDate():
 #target_date의 환율 정보 불러오기
 
 def getData(target_date):
-    AUTHKEY = 'tGie8HCpUdR4N2nMnRK38O5bouWatQHX'
+    #type your AUTHKEY
+    AUTHKEY = ''
     url = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey='+AUTHKEY+'&searchdate='+target_date+'&data=AP01'
     response = requests.get(urlparse(url).geturl())
     result = response.json()
