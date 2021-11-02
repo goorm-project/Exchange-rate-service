@@ -1,6 +1,5 @@
 FROM python:3.9-slim AS builder
 ADD requirements.txt requirements.txt
-CMD ["pwd", "ls"]
 RUN pip install -r requirements.txt
 
 FROM python:3.9.6-slim-buster
