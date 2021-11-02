@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bot-deployment
+  labels:
+    app: bot-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bot-deployment
+  template:
+    metadata:
+      labels:
+        app: bot-deployment
+    spec:
+      containers:
+      - name: telegrambot
+        image: leedowon/goormtest:1.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
