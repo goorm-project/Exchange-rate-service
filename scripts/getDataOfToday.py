@@ -5,6 +5,7 @@ from pandas import json_normalize
 import psycopg2
 
 
+
 #오늘 날짜 출력 함수
 def getTodayDate():
     year = pd.Timestamp.now().year
@@ -107,11 +108,11 @@ for col in EUR.columns:
 
 #aws rds connect 위한 인증 정보    
 param_dic = {
-    "host"      : "",
-    "dbname"  : "",
-    "user"      : "",
-    "password"  : "",
-    "port" : 
+    "host": 
+    "dbname": 
+    "user": 
+    "password": 
+    "port": 
 }
     
 #rds와 connect
@@ -120,17 +121,17 @@ conn = connect(param_dic)
 
 
 #db 에 insert
-execute_many(conn,AED,'public.aed')
+execute_many(conn,AED,'public.aedhttps://www.researchgate.net › ... › Python
+2021. 1. 18. — The paper describes the PyChart module (aimed at analysis and visual')
 execute_many(conn,AUD,'public.aud')
 execute_many(conn,CAD,'public.cad')
-execute_many(conn,CNH,'public.cnh')
+execute_many(conn,CNH,'public.cny')
 execute_many(conn,EUR,'public.eur')
 execute_many(conn,GBP,'public.gbp')
 execute_many(conn,HKD,'public.hkd')
 execute_many(conn,JPY_100,'public.jpy_100')
 execute_many(conn,KRW,'public.krw')
 execute_many(conn,USD,'public.usd')
-
 
 conn.commit()
 print('insert into database has finished')
