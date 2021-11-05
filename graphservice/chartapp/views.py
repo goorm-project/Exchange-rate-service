@@ -6,10 +6,8 @@ from django.shortcuts import render
 
 from time import mktime, strptime
 
-import graphservice
 
-
-class KospiPredictAPIView(APIView):
+class ERPredictAPIView(APIView):
 
     authentication_classes = []
     permission_classes = []
@@ -23,26 +21,42 @@ class KospiPredictAPIView(APIView):
     )
 
     def get(self, request):
-        cur = KospiPredictAPIView.conn.cursor()
-        cur.execute("SELECT * FROM aed")
-        result_list_1 = cur.fetchall()
+        cur = ERPredictAPIView.conn.cursor()
+        cur.execute("SELECT * FROM usd")
+        result_list_usd = cur.fetchall()
+        cur.execute("SELECT * FROM eur")
+        result_list_eur = cur.fetchall()
+        cur.execute("SELECT * FROM jpy_100")
+        result_list_jpy = cur.fetchall()
         #print(result_list_1[0][0])
         #stocks = KospiPredict.objects.all().order_by('date')
 
-        close_list = []
-        open_list = []
+        usd_list = []
+        eur_list = []
+        jpy_list = []
 
-        for stock in result_list_1:
-            print(stock[0])
+        for stock in result_list_usd:
             time_tuple = strptime(str(stock[0]), '%Y-%m-%d')
             utc_now = mktime(time_tuple) * 1000
 
-            close_list.append([utc_now, stock[1]])
-            open_list.append([utc_now, stock[2]])
+            usd_list.append([utc_now, stock[1]])
+
+        for stock in result_list_eur:
+            time_tuple = strptime(str(stock[0]), '%Y-%m-%d')
+            utc_now = mktime(time_tuple) * 1000
+
+            eur_list.append([utc_now, stock[1]])
+
+        for stock in result_list_jpy:
+            time_tuple = strptime(str(stock[0]), '%Y-%m-%d')
+            utc_now = mktime(time_tuple) * 1000
+
+            jpy_list.append([utc_now, stock[1]])
 
         data = {
-            'close': close_list,
-            'open': open_list
+            'usd': usd_list,
+            'eur': eur_list,
+            'jpy': jpy_list
         }
 
         return Response(data)
