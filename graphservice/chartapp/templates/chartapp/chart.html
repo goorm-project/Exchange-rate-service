@@ -5,7 +5,15 @@
     <title>환율 그래프</title>
 </head>
 <body>
-
+<form>
+  <select name="nation" >
+    <option value="none">=== 선택 ===</option>
+    <option value="korean">한국</option>
+    <option value="english">영어</option>
+    <option value="chinese">중국</option>
+    <option value="spanish">미국</option>
+  </select>
+</form>
 <div id="container">
 
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
@@ -58,11 +66,11 @@
 
                     yAxis: {
                         labels: {
-                            format: '{value}p',
+                            format: '{value}',
                             style: {
                                 color: 'rgba(0,0,0,.6)',
                             },
-                            x: 30,
+                            x: -10,
                         },
                         opposite: false,
                         tickInterval: 50,
@@ -73,25 +81,32 @@
                         split: true
                     },
 
-                    series: [{
-                        name: '시가',
-                        data: data.open,
-                        color: 'rgba(0,200,0,.6)',
-                        lineWidth: 2
-                    },
+                    series: [
                         {
-                            name: '종가',
-                            data: data.close,
+                        name: 'USD',
+                        data: data.usd,
+                        color: 'rgba(0,200,0,.6)',
+                        lineWidth: 3
+                        },
+                        {
+                            name: 'EUR',
+                            data: data.eur,
                             lineWidth: 3
-                        }],
+                        },
+                        {
+                            name: 'JPY',
+                            data: data.jpy,
+                            lineWidth: 3
+                        }
+                        ],
 
                     legend: {
                         enabled: true,
-                        align: 'left',
+                        align: 'right',
                         verticalAlign: 'top',
                         floating: true,
-                        x: 30,
-                        y: 70
+                        x: 0,
+                        y: 0
                     },
 
                     responsive: {
@@ -109,6 +124,7 @@
                             }
                         }]
                     }
+
                 });
             }
         });
