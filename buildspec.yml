@@ -15,21 +15,23 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-#      - 로그인은 이 방식보다 아래의 방식으로 하는 것이 좋음      
-#      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      # Login with CodebuildENV to docker
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/
+      # Use Commit_Hash to change the Image Tag
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo Pulling Image
+      - docker pull leedowon/goormtest:1.1
+      - docker tag leedowon/goormtest:1.1 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      # Image push to ECR
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - AWS_ECR_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      # Change the AWS_ECR_URI with New tag with Image
       - sed -i 's@AWS_ECR_URI@'"$AWS_ECR_URI"'@' Deployment.yml
-      - kubectl apply -f Deployment.yml
+      - kubectl apply -f .
