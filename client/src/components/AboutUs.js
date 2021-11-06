@@ -14,15 +14,23 @@ const images = [
 function AboutUs() {
 
     return (
-        <div id = 'wrapper' style = {{backgroundColor : '#000'}}>
+        <div id = 'wrapper' style = {{backgroundColor : '#000' , color : 'yellow', textAlign : 'center', paddingBottom : '20%'}}>
 
-            <div id = 'aboutUs' style = {{marginLeft: '25%'}}>
+            <h1 id = 'aboutUs'>
+                About Us
+            </h1>
+            <p>
+                저희는 텔레그램 챗봇 서비스 역시 제공하고 있습니다. 아래에 텔레그램 챗봇 이용 방법이 정의되어있습니다.
+            </p>
+
+            <div style = {{display : 'flex',justifyContent : 'center'}}>
                 <SimpleImageSlider
-                width={'50%'}
-                height={'80%'}
+                width={'550px'}
+                height={'450px'}
                 images={images}
                 showBullets={true}
                 showNavs={true}
+                navSize='100'
                 />
             </div>
 

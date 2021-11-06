@@ -2,7 +2,7 @@ import React from 'react'
 
 function Graph() {
     return (
-        <div id = 'graph'>
+        <div id = 'graph' style = {{marginBottom:'20%'}}>
             graph
             
         </div>

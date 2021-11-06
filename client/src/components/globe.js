@@ -144,8 +144,8 @@ const labelsData = [
   }, [globeEl]);
 
   return (
-    <div class = 'wrapper'>
-        <div id = 'globe'>
+    <div class = 'wrapper' style = {{marginBottom : '20%'}}>
+        <div id = 'globe' >
             <Globe 
             ref={globeEl}
             backgroundColor="#000"
@@ -155,7 +155,9 @@ const labelsData = [
             labelText={(d) => d.name}
             labelSize={(d) => 0.5 + d.size}
             labelLabel={(d) => `
-            <div><b>통화 코드 : ${d.code}</b></div>
+            <div>
+            <br></br>
+            <b>통화 코드 : ${d.code}</b></div>
             <li><b>받으실 때 : ${d.ttb}</b></li>
             <li><b>보내실 때 : ${d.tts}</b></li>
             <li><b>업데이트 날짜 : ${d.updateDate}</b></li>
