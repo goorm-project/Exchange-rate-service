@@ -9,7 +9,7 @@ const images = [
 function AboutUs() {
 
     return (
-        <div style = {{backgroundColor : '#000'}}>
+        <div id = 'aboutUs' style = {{backgroundColor : '#000'}}>
             <SimpleImageSlider
             width={'45%'}
             height={'80%'}
