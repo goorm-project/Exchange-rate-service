@@ -12,9 +12,9 @@ app.use(cors());
 //connect with db
 var client = new Client({ 
     user : 'postgres',
-    host : 'exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com',
-    database : 'ExchangeRate',
-    password : "12341234",
+    host : '',
+    database : '',
+    password : "",
     port : 5432, })
 
 client.connect(err => { 
