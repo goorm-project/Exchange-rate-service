@@ -5,15 +5,14 @@
     <title>환율 그래프</title>
 </head>
 <body>
-<form>
-  <select name="nation" >
-    <option value="none">=== 선택 ===</option>
-    <option value="korean">한국</option>
-    <option value="english">영어</option>
-    <option value="chinese">중국</option>
-    <option value="spanish">미국</option>
-  </select>
-</form>
+
+{#  <select name="nation" >#}
+{#    <option value="none">=== 선택 ===</option>#}
+{#    <option value="usd">USD</option>#}
+{#    <option value="eur">EUR</option>#}
+{#    <option value="cnh">CNH</option>#}
+{#  </select>#}
+
 <div id="container">
 
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
@@ -24,7 +23,8 @@
             Highcharts.setOption({
                 global: {
                     useUTC: false
-                }
+                },
+
             });
         };
 
@@ -34,6 +34,9 @@
             success: function (data) {
 
                 Highcharts.setOptions({
+                    lang: {
+                        rangeSelectorZoom: ''
+                    },
                     global: {
                         useUTC: false
                     }
@@ -42,33 +45,44 @@
                 Highcharts.stockChart("container", {
 
                     chart: {
-                        height: 500
+                        height: 500,
+                        backgroundColor: '#101010'
                     },
-
+                    credits: {enabled: false},
                     title: {
-                        text: '환율 그래프'
+                        text: '환율 그래프',
+                        y: 25,
+                        margin: 5,
+                        style: {
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        }
                     },
 
                     rangeSelector: {
                         selected: 5,
-                        inputEnabled: false
+                        inputEnabled: false,
                     },
 
                     xAxis: {
                         type: 'datetime',
                         labels: {
+                            style: {
+                                color: '#fff'
+                            },
                             formatter: function () {
                                 return Highcharts.dateFormat('%y.%m.%d', this.value);
                             },
-                            step: 3
-                        }
+                            step: 3,
+                            y: 25,
+                        },
                     },
 
                     yAxis: {
                         labels: {
                             format: '{value}',
                             style: {
-                                color: 'rgba(0,0,0,.6)',
+                                color: '#fff',
                             },
                             x: -10,
                         },
@@ -82,11 +96,13 @@
                     },
 
                     series: [
+
                         {
-                        name: 'USD',
-                        data: data.usd,
-                        color: 'rgba(0,200,0,.6)',
-                        lineWidth: 3
+                            name: 'USD',
+                            data: data.usd,
+                            color: 'rgba(0,200,0,.6)',
+                            lineWidth: 3,
+
                         },
                         {
                             name: 'EUR',
@@ -96,17 +112,20 @@
                         {
                             name: 'JPY',
                             data: data.jpy,
-                            lineWidth: 3
+                            lineWidth: 3,
+                            color: 'rgba(450,100,0,.6)',
                         }
-                        ],
-
+                    ],
                     legend: {
                         enabled: true,
                         align: 'right',
                         verticalAlign: 'top',
                         floating: true,
                         x: 0,
-                        y: 0
+                        y: 0,
+                        itemStyle: {
+                            color: '#ffd'
+                        }
                     },
 
                     responsive: {
