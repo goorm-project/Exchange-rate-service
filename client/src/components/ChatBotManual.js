@@ -11,16 +11,17 @@ const images = [
     { url: 'https://github.com/LEEDOWON96/goorm-proj/blob/main/client/src/data/images/pr_6.jpg?raw=true' },
 ];
 
-function AboutUs() {
+function ChatBotManual() {
 
     return (
-        <div id = 'wrapper' style = {{backgroundColor : '#000' , color : 'yellow', textAlign : 'center', paddingBottom : '20%'}}>
+        <div id = 'wrapper' style = {{backgroundColor : '#000' , color : 'yellow', textAlign : 'center', paddingBottom : '15%'}}>
 
-            <h1 id = 'aboutUs'>
-                About Us
+            <h1 id = 'chatBotManual'>
+                Chat Bot 사용 설명서
             </h1>
             <p>
-                저희는 텔레그램 챗봇 서비스 역시 제공하고 있습니다. 아래에 텔레그램 챗봇 이용 방법이 정의되어있습니다.
+                저희는 텔레그램 챗봇 서비스 역시 제공하고 있습니다.<br></br>
+                주기적인 알림, 원터치 환율 알림 등 다양한 서비스를 사용해보세요!
             </p>
 
             <div style = {{display : 'flex',justifyContent : 'center'}}>
@@ -39,4 +40,4 @@ function AboutUs() {
     )
 }
 
-export default AboutUs
+export default ChatBotManual

@@ -6,7 +6,7 @@ function StickySideBar() {
 
     const linkStyle ={
         top:0,
-        fontSize: '1rem',
+        fontSize: '1.3rem',
         position: 'fixed',
         zIndex: '1',
         marginBottom : '0.3rem',
@@ -39,12 +39,12 @@ function StickySideBar() {
             <p style = {{fontSize : '0.3rem'}} ></p>
 
             <Scroll
-                to="aboutUs"
+                to="chatBotManual"
                 smooth={true}
                 duration={600}
                 style = {{color: 'yellow'}}
             >
-               About Us
+               Chat Bot
             </Scroll>
         </div>
     )

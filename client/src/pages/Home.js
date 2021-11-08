@@ -2,7 +2,7 @@ import {React, useState, useEffect} from 'react';
 import CustomGlobe from '../components/globe';
 import SideBar from '../components/SideBar';
 import Graph from '../components/Graph'
-import AboutUs from '../components/AboutUs';
+import ChatBotManual from '../components/ChatBotManual';
 import axios from 'axios';
 
 
@@ -172,7 +172,7 @@ function Home() {
             audTts = {audTts} 
              ></CustomGlobe>
             <Graph></Graph>
-            <AboutUs></AboutUs>
+            <ChatBotManual></ChatBotManual>
             <SideBar></SideBar>
         </div>
     )
