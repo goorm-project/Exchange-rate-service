@@ -33,7 +33,7 @@ function StickySideBar() {
                 duration={600}
                 style = {{color: 'yellow'}}
             >
-                Graph
+                Chart
             </Scroll>
  
             <p style = {{fontSize : '0.3rem'}} ></p>

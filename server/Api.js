@@ -23,7 +23,6 @@ client.connect(err => {
     else { console.log('success!') }
 });
 
-
 function getToday(){
     var date = new Date();
     var year = date.getFullYear();
@@ -35,7 +34,7 @@ function getToday(){
 
 
 app.get('/api/today/:currencyCode', function(req, res, next) {
-    today = '2021-11-04'
+    today = '2021-11-08'
     console.log(today)
     console.log(req.params.currencyCode)
     console.log("SELECT * FROM " +req.params.currencyCode+  " WHERE date = '"+today+"'")
@@ -56,6 +55,31 @@ app.get('/api/today/:currencyCode', function(req, res, next) {
        res.send(rows);
        res.status(200).end();
     });
+    query.on('error', err => {
+         console.error(err.stack)
+    });
+});
+
+
+//그래프 출력 위한 alltime API
+app.get('/api/alltime/:currencyCode', function(req, res, next) {
+    console.log("SELECT * FROM " +req.params.currencyCode)
+    
+    const query = new Query("SELECT * FROM " +req.params.currencyCode);
+    client.query(query)
+    
+    var rows = [];
+    query.on("row",row=>{
+          rows.push(row);
+     });
+     
+    query.on('end', () => 
+     { console.log(rows);
+       console.log('query done')
+       res.send(rows);
+       res.status(200).end();
+    });
+
     query.on('error', err => {
          console.error(err.stack)
     });

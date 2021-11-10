@@ -19,19 +19,20 @@ function ChatBotManual() {
             <h1 id = 'chatBotManual'>
                 Chat Bot 사용 설명서
             </h1>
-            <p>
+            <p style = {{paddingBottom : '3%'}}> 
                 저희는 텔레그램 챗봇 서비스 역시 제공하고 있습니다.<br></br>
                 주기적인 알림, 원터치 환율 알림 등 다양한 서비스를 사용해보세요!
+
             </p>
 
-            <div style = {{display : 'flex',justifyContent : 'center'}}>
+            <div style = {{display : 'flex',justifyContent : 'center',objectFit:'cover'}}>
                 <SimpleImageSlider
-                width={'550px'}
+                width={'590px'}
                 height={'450px'}
                 images={images}
                 showBullets={true}
                 showNavs={true}
-                navSize='100'
+                navSize='50'
                 />
             </div>
 
