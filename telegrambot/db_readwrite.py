@@ -72,13 +72,4 @@ def now_data_list(nation):
         cur.execute("SELECT * FROM krw WHERE date=CURRENT_DATE")
         result_list_9 = cur.fetchall()
         return result_list_9
-
-
-'''
-cur1 = conn.cursor()
-cur1.execute("SELECT * FROM aed WHERE date=CURRENT_DATE")
-result_list = cur1.fetchall()
-
-for r in result_list:
-    print(r)
-'''
+        
