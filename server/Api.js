@@ -5,8 +5,8 @@ const Query = require('pg').Query
 const cors = require('cors');
 const Auth = require('./Auth')
 
-const port = 3100;
-
+const PORT = 3100;
+const HOST = '0.0.0.0';
 
 app.use(cors());
 
@@ -86,6 +86,6 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
 });
 
 
-app.listen(port, () => {
-    console.log(`listening on port : ${port}`);
+app.listen(PORT, HOST,() => {
+    console.log(`Running on http://${HOST}:${PORT}`);
 });
