@@ -35,8 +35,8 @@ phases:
 #      - docker images
       - echo Building the Docker image...
     # 푸시코드(?)를 분리해서 각자의 태그에 배분 
-      - docker build -t $IMAGE_REPO_NAME:$webF_IMAGE_TAG -f {DockerfileName} .
-      - docker build -t $IMAGE_REPO_NAME:$webB_IMAGE_TAG -f {DockerfileName} .
+      - docker build -t $IMAGE_REPO_NAME:$webF_IMAGE_TAG -f webB.Dockerfile .
+      - docker build -t $IMAGE_REPO_NAME:$webB_IMAGE_TAG -f webF.Dockerfile .
 #      - docker build -t $IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG -f {DockerfileName} .
       - docker tag $IMAGE_REPO_NAME:$webF_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$webF_IMAGE_TAG
       - docker tag $IMAGE_REPO_NAME:$webB_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$webB_IMAGE_TAG
