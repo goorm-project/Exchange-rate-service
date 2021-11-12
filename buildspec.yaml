@@ -11,8 +11,8 @@ phases:
       - mv ./kubectl /usr/local/bin/kubectl
       - aws sts get-caller-identity
       - mkdir ~/.kube
-      - aws eks --region ap-northeast-2 update-kubeconfig --name test
-      - kubectl get po -n kube-system
+#      - aws eks --region ap-northeast-2 update-kubeconfig --name test
+#      - kubectl get po -n kube-system
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
