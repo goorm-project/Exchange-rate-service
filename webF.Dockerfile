@@ -1,6 +1,6 @@
 #Dockerfile With Client
 
-FROM node:16
+FROM node:16-alpine3.12
 
 RUN mkdir -p /app
 
