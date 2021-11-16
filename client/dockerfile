@@ -1,0 +1,19 @@
+#Dockerfile With Client
+
+FROM node:16-alpine3.12
+
+# Set the working directory.
+WORKDIR /app
+
+# Copy the file from your host to yout current location
+COPY package*.json ./
+
+# Run the command inside your image filesystem.
+RUN npm install
+
+# Copy the file from your host to yout current location
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
