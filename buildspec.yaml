@@ -2,6 +2,7 @@
 
 version: 0.2
 phases:
+  
   install:
     runtime-versions:
       docker: 18
@@ -12,26 +13,28 @@ phases:
       - mkdir ~/.kube
       - aws eks --region ap-northeast-2 update-kubeconfig --name eks
       - kubectl get po -n kube-system
-    pre_build:
-      commands:
+  
+  pre_build:
+    commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/
-    build:
-      commands:
-       - echo Building the Docker image
-       - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-       - docker build -f ./server/dockerfile -t backend:latest .
-       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-       - docker tag backend:latest $AWS_ACCOUNT_ID.dkr.ecr$AWS_DEFAULT_REGION.amazionaws.com/backend:latest
-       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/backend:latest
+  
+  build:
+    commands:
+     - echo Building the Docker image
+     - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+     - docker build -f ./server/dockerfile -t backend:latest .
+     - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+     - docker tag backend:latest $AWS_ACCOUNT_ID.dkr.ecr$AWS_DEFAULT_REGION.amazionaws.com/backend:latest
+     - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+     - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/backend:latest
 
-    post_build:
-      commands:
-       - AWS_ECR_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-       - echo Build completed
-       - kubectl apply -f ./manifests/backend-deployment.yaml
-       - kubectl apply -f ./manifests/backend-service.yaml
-       - kubectl apply -f ./manifests/frontend-deployment.yaml
-       - kubectl apply -f ./manifests/frontend-service.yaml
-       - kubectl apply -f ./manifests/ingress.yaml
+  post_build:
+    commands:
+     - AWS_ECR_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+     - echo Build completed
+     - kubectl apply -f ./manifests/backend-deployment.yaml
+     - kubectl apply -f ./manifests/backend-service.yaml
+     - kubectl apply -f ./manifests/frontend-deployment.yaml
+     - kubectl apply -f ./manifests/frontend-service.yaml
+     - kubectl apply -f ./manifests/ingress.yaml
