@@ -11,7 +11,7 @@ phases:
       - chmod +x ./kubectl
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
-      - aws eks update-kubeconfig --name eks-demo --region ap-northeast-2 --role-arn arn:aws:sts::388265291349:assumed-role/EksWorkSpace-admin/i-042e6f7f564da86ea
+      - aws eks update-kubeconfig --name eks-demo --region $AWS_DEFAULT_REGION
       - kubectl get po -n kube-system
   
   pre_build:
