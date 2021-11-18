@@ -12,7 +12,7 @@ phases:
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
       - aws eks --region ap-northeast-2 update-kubeconfig --name eks-demo
-      - kubectl get po -n kube-system
+      - kubectl get po -n kube-system --namespace=default
   
   pre_build:
     commands:
