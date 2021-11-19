@@ -9,7 +9,6 @@ phases:
       - mv ./kubectl /usr/local/bin/kubectl
       - mkdir ~/.kube
       - aws eks update-kubeconfig --name eks-demo --region $AWS_DEFAULT_REGION
-      - kubectl get po -n kube-system
       - echo INSTALLATION FINISHED
   
   pre_build:
