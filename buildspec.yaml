@@ -32,7 +32,7 @@ phases:
 #      - docker images
       - echo Building the Docker image...
 #      - sed -i 's@HOST@'"$BackName"'@' ./server/Api.js
-    # 푸시코드(?)를 분리해서 각자의 태그에 배분 
+
       - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG ./client
       - docker build -f ./server/dockerfile -t $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG ./server
 #      - docker build -t $IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG -f {DockerfileName} .
