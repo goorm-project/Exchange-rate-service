@@ -30,7 +30,7 @@ phases:
 #      - echo Pulling Image
 #      - docker pull leedowon/goormtest:1.1
 #      - docker images
-      - echo Building the Docker image...
+      - echo Building the Docker images...
 #      - sed -i 's@HOST@'"$BackName"'@' ./server/Api.js
 
       - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG ./client
