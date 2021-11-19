@@ -15,7 +15,6 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-#      - 로그인은 이 방식보다 아래의 방식으로 하는 것이 좋음      
 #      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/
       # Commit_Hash를 통해 이미지 태그 이용
