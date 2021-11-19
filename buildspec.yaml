@@ -20,7 +20,7 @@ phases:
       - COMMIT_HASH1=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-4)
       - COMMIT_HASH2=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 5-8)
       # - COMMIT_HASH3=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 9-12)
-      # Commit_HASH에서 MD1 
+
       - webF_IMAGE_TAG=F-${COMMIT_HASH1:=latest}
       - webB_IMAGE_TAG=B-${COMMIT_HASH2:=latest}
       # - telegramBot_IMAGE_TAG=${COMMIT_HASH3:=latest}
