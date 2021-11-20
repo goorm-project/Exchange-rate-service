@@ -3,7 +3,7 @@ const app = express();
 const { Client } = require("pg");
 const Query = require('pg').Query
 const cors = require('cors');
-const Auth = 'exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com'
+const Auth = 
 
 const PORT = 3100;
 const HOST = '0.0.0.0';
