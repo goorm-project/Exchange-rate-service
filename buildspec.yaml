@@ -25,15 +25,13 @@ phases:
       # - telegramBot_IMAGE_TAG=${COMMIT_HASH3:=latest}
   build:
     commands:
+    
       - echo Build started on `date`
-#      - echo Pulling Image
-#      - docker pull leedowon/goormtest:1.1
-#      - docker images
       - echo Building the Docker images...
-#      - sed -i 's@HOST@'"$BackName"'@' ./server/Api.js
 
       - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG ./client
       - docker build -f ./server/dockerfile -t $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG ./server
+      
 #      - docker build -t $IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG -f {DockerfileName} .
       - docker tag $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
       - docker tag $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
@@ -45,12 +43,16 @@ phases:
 #      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG
   post_build:
     commands:
-      - echo Build completed on `date`
-      - webF_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
-      - webB_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
-#      - telegramBot_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG   
-#      - sed -i 's@ECR_WEBF_IMAGE@'"$webF_URI"'@' Deployment.yaml
-#      - sed -i 's@ECR_WEBB_IMAGE@'"$webB_URI"'@' Deployment.yaml
+      - DATE = 'date'
+      - echo Build completed on $DATE
+      - AWS_ECR_URIF=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
+      - AWS_ECR_URIB=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
+
+      - sed -i.bak 's#AWS_ECR_URIF#'"$AWS_ECR_URIF"'#' ./manifests/frontend-deployment.yaml
+      - sed -i.bak 's#AWS_ECR_URIB#'"$AWS_ECR_URIB"'#' ./manifests/backend-deployment.yaml
+      - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./manifests/frontend-deployment.yaml
+      - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./manifests/backend-deployment.yaml
+      
       - kubectl apply -f ./manifests/backend-deployment.yaml
       - kubectl apply -f ./manifests/backend-service.yaml
       - kubectl apply -f ./manifests/frontend-deployment.yaml
