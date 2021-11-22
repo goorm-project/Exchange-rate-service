@@ -43,7 +43,7 @@ phases:
 #      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG
   post_build:
     commands:
-      - DATE = 'date'
+      - DATE=`date`
       - echo Build completed on $DATE
       - AWS_ECR_URIF=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
       - AWS_ECR_URIB=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
