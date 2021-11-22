@@ -16,25 +16,29 @@ phases:
       commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/
+      - COMMIT_HASH1=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-4)
+      - COMMIT_HASH2=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 5-8)
+      - webF_IMAGE_TAG=F-${COMMIT_HASH1:=latest}
+      - webB_IMAGE_TAG=B-${COMMIT_HASH2:=latest}
     build:
       commands:
-       - echo Building the Docker image
-       - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAMEF:$IMAGE_TAG .
-       - docker build -f ./server/dockerfile -t $IMAGE_REPO_NAMEB:$IMAGE_TAG .
+
+       - echo Build completed on 'date'
+       - echo Building the Docker image started on DATE
        
-       - docker tag $IMAGE_REPO_NAMEF:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$IMAGE_TAG
-       - docker tag $IMAGE_REPO_NAMEB:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$IMAGE_TAG
+       - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG .
+       - docker build -f ./server/dockerfile -t $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG .
        
-       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$IMAGE_TAG
-       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$IMAGE_TAG
+       - docker tag $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
+       - docker tag $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
+       
+       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
+       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
 
     post_build:
       commands:
-       - AWS_ECR_URIF=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$IMAGE_TAG
-       - AWS_ECR_URIB=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$IMAGE_TAG
-       
-       - DATE=`date`
-       - echo Build completed on $DATE
+       - AWS_ECR_URIF=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
+       - AWS_ECR_URIB=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
        
        - sed -i.bak 's#AWS_ECR_URIF#'"$AWS_ECR_URIF"'#' ./manifests/frontend-deployment.yaml
        - sed -i.bak 's#AWS_ECR_URIB#'"$AWS_ECR_URIB"'#' ./manifests/backend-deployment.yaml       
