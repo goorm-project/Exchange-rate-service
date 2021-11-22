@@ -8,9 +8,8 @@ phases:
       - chmod +x ./kubectl
       - docker version
       - mv ./kubectl /usr/local/bin/kubectl
-      - aws sts get-caller-identity
       - mkdir ~/.kube
-      - aws eks --region ap-northeast-2 update-kubeconfig --name eks-demo
+      - aws eks --region ap-northeast-2 update-kubeconfig --name goorm-eks-cluster
       - kubectl get po -n kube-system
   pre_build:
     commands:
