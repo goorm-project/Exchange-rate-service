@@ -42,12 +42,12 @@ function Home() {
     const [aedTts, setAedTts] = useState('');
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/eur')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/eur')
             .then(res => setDate(res.data[0].updateDate))
     },[])
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/eur')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/eur')
             .then(res => {
                 setEurTtb(res.data[1].ttb)
                 setEurTts(res.data[1].tts)
@@ -55,7 +55,7 @@ function Home() {
     },[])
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/cad')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/cad')
             .then(res => {
                 setCadTtb(res.data[1].ttb)
                 setCadTts(res.data[1].tts)
@@ -63,7 +63,7 @@ function Home() {
     },[])
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/aud')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/aud')
             .then(res => {
                 setAudTtb(res.data[1].ttb)
                 setAudTts(res.data[1].tts)
@@ -72,7 +72,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/cny')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/cny')
             .then(res => {
                 setCnyTtb(res.data[1].ttb)
                 setCnyTts(res.data[1].tts)
@@ -81,7 +81,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/krw')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/krw')
             .then(res => {
                 setKrwTtb(res.data[1].ttb)
                 setKrwTts(res.data[1].tts)
@@ -90,7 +90,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/jpy_100')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/jpy_100')
             .then(res => {
                 setJpyTtb(res.data[1].ttb)
                 setJpyTts(res.data[1].tts)
@@ -99,7 +99,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/usd')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/usd')
             .then(res => {
                 setUsdTtb(res.data[1].ttb)
                 setUsdTts(res.data[1].tts)
@@ -108,7 +108,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/gbp')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/gbp')
             .then(res => {
                 setGbpTtb(res.data[1].ttb)
                 setGbpTts(res.data[1].tts)
@@ -117,7 +117,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/aed')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/aed')
             .then(res => {
                 setAedTtb(res.data[1].ttb)
                 setAedTts(res.data[1].tts)
@@ -126,7 +126,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get('http://k8s-default-backendi-6566bc7d31-326551117.ap-northeast-2.elb.amazonaws.com/api/today/hkd')
+        axios.get('http://k8s-default-backendi-81ae9a080b-1869926175.ap-northeast-2.elb.amazonaws.com/api/today/hkd')
             .then(res => {
                 setHkdTtb(res.data[1].ttb)
                 setHkdTts(res.data[1].tts)
