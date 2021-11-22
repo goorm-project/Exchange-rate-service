@@ -15,8 +15,8 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: demo-frontend
-          image: 388265291349.dkr.ecr.ap-northeast-2.amazonaws.com/frontend:latest
+        - name: frontend
+          image: AWS_ECR_URI
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
