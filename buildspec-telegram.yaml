@@ -18,7 +18,7 @@ phases:
       - echo Logging in to Amazon ECR...
 
       - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-2.amazonaws.com/
-      # Commit_Hash를 통해 이미지 태그 이용
+      @ Commit_Hash를 통해 이미지 태그 이용
       - COMMIT_HASH1=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-4)
       - COMMIT_HASH2=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 5-8)
 
@@ -47,11 +47,11 @@ phases:
       - AWS_ECR_URI_BOT=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_BOT:$BOT_IMAGE_TAG
       - AWS_ECR_URI_ALARM=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_ALARM:$ALARM_IMAGE_TAG
 
-      - sed -i.bak 's#AWS_ECR_URI_BOT#'"$AWS_ECR_URI_BOT"'#' ./manifests/telegrambotservice.yaml
-      - sed -i.bak 's#AWS_ECR_URI_ALARM#'"$AWS_ECR_URI_ALARM"'#' ./manifests/alarmservice.yaml
+      - sed -i.bak 's@AWS_ECR_URI_BOT@'"$AWS_ECR_URI_BOT"'@' ./manifests/telegrambotservice.yaml
+      - sed -i.bak 's@AWS_ECR_URI_ALARM@'"$AWS_ECR_URI_ALARM"'@' ./manifests/alarmservice.yaml
       
-      - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./manifests/telegrambotservice.yaml
-      - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./manifests/alarmservice.yaml
+      - sed -i.bak 's@DATE_STRING@'"$DATE"'@' ./manifests/telegrambotservice.yaml
+      - sed -i.bak 's@DATE_STRING@'"$DATE"'@' ./manifests/alarmservice.yaml
       
       - kubectl -n eks-telegram apply -f ./manifests/telegrambotservice.yaml 
       - kubectl -n eks-telegram apply -f ./manifests/alarmservice.yaml
