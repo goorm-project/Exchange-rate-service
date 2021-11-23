@@ -5,10 +5,10 @@ import update_db
 
 
 conn = psycopg2.connect(
-    host="database-1.ck9mt4aiy0zp.ap-northeast-2.rds.amazonaws.com",
-    database="test",
-    user="goorm",
-    password="test123qwe",
+    host="Auth",
+    database="ExchangeRate",
+    user="postgres",
+    password="12341234",
     port="5432"
 )
 

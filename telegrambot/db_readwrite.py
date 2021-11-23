@@ -4,11 +4,11 @@ from datetime import datetime
 today_date = datetime.today().strftime("%Y-%m-%d")  # WHERE 문에서 현재 시각 조건 입력위함
 
 conn = psycopg2.connect(
-    host="",
-    database="",
-    user="",
-    password="",
-    port=""
+    host="Auth",
+    database="ExchangeRate",
+    user="postgres",
+    password="12341234",
+    port="5432"
 )
 
 cur_check = conn.cursor()
