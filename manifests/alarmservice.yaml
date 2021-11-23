@@ -1,9 +1,9 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: alarmbot
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "*/1 * * * 1-5"
   #schedule: "0 9 * * 1-5"
   startingDeadlineSeconds: 60
   concurrencyPolicy: Forbid
