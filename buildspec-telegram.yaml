@@ -46,12 +46,12 @@ phases:
 
       - AWS_ECR_URI_BOT=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_BOT:$BOT_IMAGE_TAG
       - AWS_ECR_URI_ALARM=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME_ALARM:$ALARM_IMAGE_TAG
-
-      - sed -i.bak 's@AWS_ECR_URI_BOT@'"$AWS_ECR_URI_BOT"'@' ./manifests/telegrambotservice.yaml
-      - sed -i.bak 's@AWS_ECR_URI_ALARM@'"$AWS_ECR_URI_ALARM"'@' ./manifests/alarmservice.yaml
       
-      - sed -i.bak 's@DATE_STRING@'"$DATE"'@' ./manifests/telegrambotservice.yaml
-      - sed -i.bak 's@DATE_STRING@'"$DATE"'@' ./manifests/alarmservice.yaml
+      - echo $AWS_ECR_URI_BOT
+      - echo $AWS_ECR_URI_ALARM
+
+      - sed -i.bak 's#AWS_ECR_URI_BOT#'"$AWS_ECR_URI_BOT"'#' ./manifests/telegrambotservice.yaml
+      - sed -i.bak 's#AWS_ECR_URI_ALARM#'"$AWS_ECR_URI_ALARM"'#' ./manifests/alarmservice.yaml
       
       - kubectl -n eks-telegram apply -f ./manifests/telegrambotservice.yaml 
       - kubectl -n eks-telegram apply -f ./manifests/alarmservice.yaml
