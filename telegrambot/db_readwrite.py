@@ -72,4 +72,12 @@ def now_data_list(nation):
         cur.execute("SELECT * FROM krw WHERE date=CURRENT_DATE")
         result_list_9 = cur.fetchall()
         return result_list_9
-        
+
+
+def user_list(userdata):
+    cur = conn.cursor()
+    # print(str(userdata.id) + userdata.first_name + userdata.last_name + userdata.type)
+
+    cur.execute("INSERT INTO public.user VALUES('" + str(
+        userdata.id) + "','" + str(userdata.first_name) + "','" + str(userdata.last_name) + "','" + userdata.type + "') ON CONFLICT(id) DO NOTHING")
+    conn.commit()

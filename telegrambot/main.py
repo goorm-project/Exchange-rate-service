@@ -1,5 +1,6 @@
 import time
 import datetime
+
 import db_readwrite
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ChatAction
 from telegram.ext import Updater, MessageHandler, Filters, CommandHandler, CallbackQueryHandler
@@ -9,6 +10,7 @@ updater = Updater(my_token, use_context=True)
 
 
 def start(update, context):
+    db_readwrite.user_list(update.message.chat)
     reply_text = "💡💡봇이 잠에서 깨어납니다💡💡" + "\n" + "\n" \
                  + "💱 환율 정보를 알고 싶으신가요?💱" + "\n" + "\n" \
                  + "◾ 반갑습니다 🙌 " + "\n" \
@@ -117,7 +119,7 @@ def cb_button(update, context):
         )
 
 
-# 명령어 sise가 들어올 때 불리어지는 함수
+# 명령어 price가 들어올 때 불리어지는 함수
 def price_command(update, context):
     code = context.args[0]  # args[0]에 첫번째 인자, 복수개 인자를 사용한 경우에는 [1], [2] 이런식으로 구분
     price = 11000  # 보내줄 현재가, xing api로 값을 얻는다.
