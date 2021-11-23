@@ -53,7 +53,7 @@ USD = october[october['cur_unit'] == 'USD'].iloc[:, :-3]
 
 # aws rds connect 위한 인증 정보
 param_dic = {
-    "host": "Auth",
+    "host": "exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com",
     "dbname": "ExchangeRate",
     "user": "postgres",
     "password": "12341234",
