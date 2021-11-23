@@ -13,6 +13,6 @@ spec:
         spec:
           containers:
           - name: alarmbot
-            image: 388265291349.dkr.ecr.ap-northeast-2.amazonaws.com/goorm/telegram-alarm:ALARM-0edf
+            image: AWS_ECR_URI_ALARM
             imagePullPolicy: IfNotPresent
           restartPolicy: OnFailure
