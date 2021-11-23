@@ -103,7 +103,7 @@ for col in EUR.columns:
 
 # aws rds connect 위한 인증 정보
 param_dic = {
-    "host": "Auth",
+    "host": "exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com",
     "dbname": "ExchangeRate",
     "user": "postgres",
     "password": "12341234",
@@ -117,7 +117,7 @@ conn = connect(param_dic)
 execute_many(conn, AED, 'public.aed')
 execute_many(conn, AUD, 'public.aud')
 execute_many(conn, CAD, 'public.cad')
-execute_many(conn, CNH, 'public.cnh')
+execute_many(conn, CNH, 'public.cny')
 execute_many(conn, EUR, 'public.eur')
 execute_many(conn, GBP, 'public.gbp')
 execute_many(conn, HKD, 'public.hkd')

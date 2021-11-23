@@ -11,9 +11,6 @@ conn = psycopg2.connect(
     port="5432"
 )
 
-cur_check = conn.cursor()
-cur_check.excute("SELECT ")
-
 
 def now_data_list(nation):
     cur = conn.cursor()
