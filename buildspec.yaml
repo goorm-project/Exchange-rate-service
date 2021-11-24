@@ -52,5 +52,7 @@ phases:
       
       - kubectl apply -f ./manifests/backend-deployment.yaml
       - kubectl apply -f ./manifests/frontend-deployment.yaml
+      - kubectl apply -f ./manifests/backend-service.yaml
+      - kubectl apply -f ./manifests/frontend-service.yaml
       - kubectl apply -f ./manifests/ingress.yaml
 
