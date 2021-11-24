@@ -17,9 +17,6 @@ def alert():
     now = datetime.datetime.now().replace(microsecond=0)
     today_time = str(now)
 
-    if now.hour >= 23 or now.hour <= 6:
-        return
-
     message = '환율 정보가 갱신되었습니다❕' + "\n" + "\n" \
               + "일시: " + today_time + "\n" + "\n" \
               + "◾ 도움말 제공 👉 '/help'(클릭)" + "\n" \
