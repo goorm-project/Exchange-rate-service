@@ -18,29 +18,26 @@ phases:
       # Commit_Hash를 통해 이미지 태그 이용
       - COMMIT_HASH1=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-4)
       - COMMIT_HASH2=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 5-8)
-      # - COMMIT_HASH3=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 9-12)
-
       - webF_IMAGE_TAG=F-${COMMIT_HASH1:=latest}
       - webB_IMAGE_TAG=B-${COMMIT_HASH2:=latest}
-      # - telegramBot_IMAGE_TAG=${COMMIT_HASH3:=latest}
+
   build:
     commands:
     
       - echo Build started on `date`
       - echo Building the Docker images...
 
-      - docker build -f ./client/dockerfile -t $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG .
-      - docker build -f ./server/dockerfile -t $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG .
+      - docker build -f ./webservices/client/dockerfile -t $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG .
+      - docker build -f ./webservices/server/dockerfile -t $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG .
       
-#      - docker build -t $IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG -f {DockerfileName} .
+
       - docker tag $IMAGE_REPO_NAMEF:$webF_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
       - docker tag $IMAGE_REPO_NAMEB:$webB_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
-#      - docker tag $IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG
-#      - docker tag leedowon/goormtest:1.1 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+
       - echo Pushing the Image
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEF:$webF_IMAGE_TAG
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAMEB:$webB_IMAGE_TAG
-#      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$telegramBot_IMAGE_TAG
+
   post_build:
     commands:
       - DATE=`date`
