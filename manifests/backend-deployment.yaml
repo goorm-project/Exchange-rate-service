@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  namespace: default
+  namespace: eks-web
 spec:
   replicas: 3
   selector:
