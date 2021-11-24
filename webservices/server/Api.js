@@ -3,7 +3,7 @@ const app = express();
 const { Client } = require("pg");
 const Query = require('pg').Query
 const cors = require('cors');
-const Auth = 'exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com'
+const Auth = "eks-goorm-rds.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com"
 
 const PORT = 3100;
 const HOST = '0.0.0.0';
@@ -12,10 +12,10 @@ app.use(cors());
 
 //connect with db
 var client = new Client({ 
-    user : 'postgres',
+    user : 'goormuser',
     host : Auth,
-    database : 'ExchangeRate',
-    password : "12341234",
+    database : "exchangerate",
+    password : "sMryjYDSArfKCiXj",
     port : 5432, })
 
 client.connect(err => { 
