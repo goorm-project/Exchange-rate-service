@@ -5,10 +5,10 @@ import update_db
 
 
 conn = psycopg2.connect(
-    host="exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com",
-    database="ExchangeRate",
-    user="postgres",
-    password="12341234",
+    host="eks-goorm-rds.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com",
+    database="exchangerate",
+    user="goormuser",
+    password="sMryjYDSArfKCiXj",
     port="5432"
 )
 

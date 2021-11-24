@@ -103,10 +103,10 @@ for col in EUR.columns:
 
 # aws rds connect 위한 인증 정보
 param_dic = {
-    "host": "exchangerate-db.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com",
-    "dbname": "ExchangeRate",
-    "user": "postgres",
-    "password": "12341234",
+    "host": "eks-goorm-rds.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com",
+    "dbname": "exchangerate",
+    "user": "goormuser",
+    "password": "sMryjYDSArfKCiXj",
     "port": 5432
 }
 
