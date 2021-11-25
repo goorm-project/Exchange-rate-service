@@ -69,15 +69,20 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
     query.on("row",row=>{
           rows.push(row);
      });
-     
+
+console.log(arrUnique); 
+    
     query.on('end', () => 
      {        
-       const temp = new Set(rows);
        console.log(rows);
        console.log('query done')
-       uniqueRows = [...temp];
-       res.send(uniqueRows);
+       const rowsUnique = rows.filter((target, idx, arr) => {
+           return arr.findIndex((item) => item.date === target.date) === idx
+       });
+
+       res.send(rowsUnique);
        res.status(200).end();
+
     });
 
     query.on('error', err => {
