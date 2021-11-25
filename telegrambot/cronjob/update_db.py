@@ -103,11 +103,11 @@ for col in EUR.columns:
 
 # aws rds connect 위한 인증 정보
 param_dic = {
-    "host": "database-1.ck9mt4aiy0zp.ap-northeast-2.rds.amazonaws.com",
-    "dbname": "test",
-    "user": "goorm",
-    "password": "test123qwe",
-    "port": 5432
+    "host": "",
+    "dbname": "",
+    "user": "",
+    "password": "",
+    "port": 
 }
 
 # rds와 connect
