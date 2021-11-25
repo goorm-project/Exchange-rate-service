@@ -6,8 +6,8 @@ const cors = require('cors');
 const Auth = "eks-goorm-rds.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com"
 
 const PORT = 3100;
-const HOST = '0.0.0.0';
-
+//const HOST = '0.0.0.0';
+const HOST = 'localhost'
 app.use(cors());
 
 //connect with db
