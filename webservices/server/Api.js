@@ -70,8 +70,6 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
           rows.push(row);
      });
 
-console.log(arrUnique); 
-    
     query.on('end', () => 
      {        
        console.log(rows);
