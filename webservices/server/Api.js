@@ -6,8 +6,8 @@ const cors = require('cors');
 const Auth = "eks-goorm-rds.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com"
 
 const PORT = 3100;
-//const HOST = '0.0.0.0';
-const HOST = 'localhost'
+const HOST = '0.0.0.0';
+
 app.use(cors());
 
 //connect with db
@@ -34,13 +34,10 @@ function getToday(){
 
 
 app.get('/api/today/:currencyCode', function(req, res, next) {
-    today = '2021-11-08'
-    console.log(today)
-    console.log(req.params.currencyCode)
-    console.log("SELECT * FROM " +req.params.currencyCode+  " WHERE date = '"+today+"'")
-    
 
-    const query = new Query("SELECT * FROM " +req.params.currencyCode+  " WHERE date = '"+today+"'");
+    today = getToday()
+
+    const query = new Query("SELECT * FROM " +req.params.currencyCode+  " ORDER BY date DESC LIMIT 1");
     client.query(query)
         
     var rows = [];
