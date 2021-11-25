@@ -84,8 +84,6 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
          console.error(err.stack)
     });
 
-    const set = new Set(dupArr);
-    const uniqueArr = [...set];
 });
 
 
