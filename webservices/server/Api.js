@@ -61,7 +61,7 @@ app.get('/api/today/:currencyCode', function(req, res, next) {
 //그래프 출력 위한 alltime API
 app.get('/api/alltime/:currencyCode', function(req, res, next) {
     
-    const query = new Query("SELECT * FROM " +req.params.currencyCode+" GROUP BY date");
+    const query = new Query("SELECT DISTINCT * FROM " +req.params.currencyCode+ " ORDER BY date");
     client.query(query)
     
     var rows = [];
