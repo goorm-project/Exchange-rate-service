@@ -60,24 +60,22 @@ app.get('/api/today/:currencyCode', function(req, res, next) {
 
 //그래프 출력 위한 alltime API
 app.get('/api/alltime/:currencyCode', function(req, res, next) {
-    console.log("SELECT * FROM " +req.params.currencyCode)
     
-    const query = new Query("SELECT * FROM " +req.params.currencyCode);
+    const query = new Query("SELECT DISTINCT * FROM " +req.params.currencyCode+ " ORDER BY date");
     client.query(query)
     
     var rows = [];
     query.on("row",row=>{
           rows.push(row);
      });
-     
+
     query.on('end', () => 
      {        
-       const temp = new Set(rows);
        console.log(rows);
        console.log('query done')
-       uniqueRows = [...temp];
-       res.send(uniqueRows);
+       res.send(rows);
        res.status(200).end();
+
     });
 
     query.on('error', err => {
