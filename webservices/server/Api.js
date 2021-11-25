@@ -60,9 +60,8 @@ app.get('/api/today/:currencyCode', function(req, res, next) {
 
 //그래프 출력 위한 alltime API
 app.get('/api/alltime/:currencyCode', function(req, res, next) {
-    console.log("SELECT * FROM " +req.params.currencyCode)
     
-    const query = new Query("SELECT * FROM " +req.params.currencyCode);
+    const query = new Query("SELECT DISTINCT * FROM " +req.params.currencyCode);
     client.query(query)
     
     var rows = [];
@@ -74,11 +73,7 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
      {        
        console.log(rows);
        console.log('query done')
-       const rowsUnique = rows.filter((target, idx, arr) => {
-           return arr.findIndex((item) => item.date === target.date) === idx
-       });
-
-       res.send(rowsUnique);
+       res.send(rows);
        res.status(200).end();
 
     });
