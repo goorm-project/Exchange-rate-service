@@ -71,15 +71,21 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
      });
      
     query.on('end', () => 
-     { console.log(rows);
+     {        
+       const temp = new Set(rows);
+       console.log(rows);
        console.log('query done')
-       res.send(rows);
+       uniqueRows = [...temp];
+       res.send(uniqueRows);
        res.status(200).end();
     });
 
     query.on('error', err => {
          console.error(err.stack)
     });
+
+    const set = new Set(dupArr);
+    const uniqueArr = [...set];
 });
 
 
