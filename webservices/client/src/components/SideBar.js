@@ -15,7 +15,7 @@ function StickySideBar() {
 
     return (
 
-        <div style={{...linkStyle, backgroundColor : '#000', color:'white'}}>
+        <div style={{...linkStyle, backgroundColor : '#000', color:'white', paddingBottom : '0.3rem ='}}>
             <Scroll
                 to="globe"
                 smooth={true}
@@ -23,8 +23,7 @@ function StickySideBar() {
             >
                 Globe
             </Scroll>
-    
-            <p style = {{fontSize : '0.3rem'}}></p>
+            <br></br>
     
             <Scroll
                 to="graph"
@@ -33,15 +32,21 @@ function StickySideBar() {
             >
                 Chart
             </Scroll>
- 
-            <p style = {{fontSize : '0.3rem'}} ></p>
-
+            <br></br>
             <Scroll
                 to="chatBotManual"
                 smooth={true}
                 duration={600}
             >
-               Chat Bot
+               Chat Bot Manual
+            </Scroll>
+            <br></br>
+            <Scroll
+                to="converter"
+                smooth={true}
+                duration={600}
+            >
+               Currency Converter
             </Scroll>
         </div>
     )

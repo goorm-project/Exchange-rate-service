@@ -3,7 +3,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import axios from 'axios';
-import ComboBox from './ComboBox';
+import ComboBox from './ComboBoxForChart';
 
 
 function LineGraph() {
@@ -13,16 +13,11 @@ function LineGraph() {
     const getTargetCountry = (country) => {
         setTargetCountry(country);
     }
-
-    console.log(targetCountry)
-    console.log('that was targetCountry')
-
     const [data, setData] = useState([]);
 
     useEffect(() => {
         axios.get('http://k8s-eksweb-backendi-e94dfcbac2-406838544.ap-northeast-2.elb.amazonaws.com/api/alltime/ '+targetCountry.toLowerCase())
         .then(res => {
-            //console.log(res.data)
             const temp = res.data
             temp.map((day) => {
                 return day.date = day.date.slice(0,10)
@@ -41,6 +36,8 @@ function LineGraph() {
         </ComboBox>
 
         <LineChart
+            style = {{color : '#000'}}
+
             width={900}
             height={550}
             data={data}

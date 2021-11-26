@@ -30,7 +30,7 @@ function ComboBox(props) {
   return (
     <div className="App" style = {{fontSize : '1rem', color : '#000'}}>
       <Select
-
+        defaultValue = {options[0]}
         options={options}
         value = {options.find(op => {
             return op.value === choice

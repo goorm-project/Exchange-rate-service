@@ -3,6 +3,7 @@ import CustomGlobe from '../components/globe';
 import SideBar from '../components/SideBar';
 import Graph from '../components/Graph'
 import ChatBotManual from '../components/ChatBotManual';
+import CurrencyConverter from '../components/CurrencyConverter';
 import axios from 'axios';
 
 
@@ -161,6 +162,7 @@ function Home() {
              ></CustomGlobe>
             <Graph></Graph>
             <ChatBotManual></ChatBotManual>
+            <CurrencyConverter></CurrencyConverter>
             <SideBar></SideBar>
 
 
