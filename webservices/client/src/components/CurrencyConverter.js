@@ -71,17 +71,21 @@ function CurrencyConverter() {
 
             <div id = 'to_combobox' style = {{color:'#000', display : 'flex', justifyContent : 'center',  paddingBottom : '2rem'}}>
                 <span style = {{color:'white', paddingRight : '4rem'}}>1. <span style = {{fontSize : '1.4rem'}}>환전</span>하실 화폐의 사용국가를 선택하세요!</span>
+                <div style = {{width : '210px'}}>
                 <ComboBox
                     getTargetCountry = {getToCountry}>
                 </ComboBox>
+                </div>
             </div>
 
             <div id = 'from_combobox' style = {{color:'#000', display : 'inline-flex', justifyContent : 'space-between', paddingBottom : '2rem'}}>
                 <span style = {{color:'white' ,paddingRight : '4rem'}}>2. <span style = {{fontSize : '1.4rem'}}>보유</span>하신 화폐의 사용국가를 선택하세요!</span>
+                <div style = {{width : '210px'}}>
                 <ComboBox
-                    style = {{}}
+  
                     getTargetCountry = {getFromCountry}>
                 </ComboBox>
+                </div>
             </div>
 
             <div>
