@@ -4,7 +4,7 @@ metadata:
   name: alarmbot
 spec:
   #schedule: "*/1 * * * *"
-  schedule: "5 0 * * 1-5"
+  schedule: "30 1 * * 1-5"
   startingDeadlineSeconds: 60
   concurrencyPolicy: Forbid
   jobTemplate:
