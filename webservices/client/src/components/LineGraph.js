@@ -32,6 +32,7 @@ function LineGraph() {
 
         <div style = {{display : 'flex',justifyContent : 'center',tableLayout : 'fixed'}}>
         <div style = {{width : '210px'}}>
+            
         <ComboBox 
             getTargetCountry = {getTargetCountry}>
         </ComboBox>
