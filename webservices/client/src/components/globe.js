@@ -164,7 +164,7 @@ const labelsData = [
             <i>자세한 정보를 보시려면 클릭하세요</i>
             `}
             
-            labelColor={useCallback(() => "yellow", [])}
+            labelColor={useCallback(() => "white", [])}
             onLabelClick={() => window.open('https://www.koreaexim.go.kr/site/program/financial/exchange?menuid=001001004002001')}
             labelDotRadius={0.4}
             labelAltitude={0.05}

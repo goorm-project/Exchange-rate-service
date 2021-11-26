@@ -15,12 +15,11 @@ function StickySideBar() {
 
     return (
 
-        <div style={{...linkStyle, backgroundColor : '#000'}}>
+        <div style={{...linkStyle, backgroundColor : '#000', color:'white'}}>
             <Scroll
                 to="globe"
                 smooth={true}
                 duration={600}
-                style = {{color: 'yellow'}}
             >
                 Globe
             </Scroll>
@@ -31,7 +30,6 @@ function StickySideBar() {
                 to="graph"
                 smooth={true}
                 duration={600}
-                style = {{color: 'yellow'}}
             >
                 Chart
             </Scroll>
@@ -42,7 +40,6 @@ function StickySideBar() {
                 to="chatBotManual"
                 smooth={true}
                 duration={600}
-                style = {{color: 'yellow'}}
             >
                Chat Bot
             </Scroll>

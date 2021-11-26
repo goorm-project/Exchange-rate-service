@@ -14,7 +14,7 @@ const images = [
 function ChatBotManual() {
 
     return (
-        <div id = 'wrapper' style = {{backgroundColor : '#000' , color : 'yellow', textAlign : 'center', paddingBottom : '15%'}}>
+        <div id = 'wrapper' style = {{backgroundColor : '#000' , textAlign : 'center', paddingBottom : '15%'}}>
 
             <h1 id = 'chatBotManual'>
                 Chat Bot 사용 설명서

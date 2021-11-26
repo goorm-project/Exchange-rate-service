@@ -135,7 +135,7 @@ function Home() {
 
 
     return (
-        <div className = 'wrapper' style = {{backgroundColor : "#000"}}>
+        <div className = 'wrapper' style = {{backgroundColor : "#000", color : 'white'}}>
             <CustomGlobe 
                 date = {date} 
                 eurTtb = {eurTtb}

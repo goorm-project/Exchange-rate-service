@@ -22,7 +22,7 @@ function LineGraph() {
     useEffect(() => {
         axios.get('http://k8s-eksweb-backendi-e94dfcbac2-406838544.ap-northeast-2.elb.amazonaws.com/api/alltime/ '+targetCountry.toLowerCase())
         .then(res => {
-            console.log(res.data)
+            //console.log(res.data)
             const temp = res.data
             temp.map((day) => {
                 return day.date = day.date.slice(0,10)
