@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function CustomGlobe( props ) {
 
-  const [eur,setEur] = useState({});
+  const [eur,setEur] = useState('');
   const [cad,setCad] = useState({});
   const [aud,setAud] = useState({});
   const [krw,setKrw] = useState({});
@@ -21,43 +21,43 @@ export default function CustomGlobe( props ) {
   useEffect(() => {
       axios.get('http://localhost:3100/api/today/eur')
           .then(res => {
-            setEur(res.data[1])
+            setEur(res.data)
           })
       axios.get('http://localhost:3100/api/today/cad')
           .then(res => {
-              setCad(res.data[1])
+              setCad(res.data)
           })
       axios.get('http://localhost:3100/api/today/aud')
           .then(res => {
-              setAud(res.data[1])
+              setAud(res.data)
           })
       axios.get('http://localhost:3100/api/today/cny')
           .then(res => {
-              setCny(res.data[1])
+              setCny(res.data)
           })
       axios.get('http://localhost:3100/api/today/krw')
           .then(res => {
-              setKrw(res.data[1])
+              setKrw(res.data)
           })
       axios.get('http://localhost:3100/api/today/jpy_100')
           .then(res => {
-              setJpy(res.data[1])
+              setJpy(res.data)
           })
       axios.get('http://localhost:3100/api/today/usd')
           .then(res => {
-              setUsd(res.data[1])
+              setUsd(res.data)
           })
       axios.get('http://localhost:3100/api/today/gbp')
         .then(res => {
-            setGbp(res.data[1])
+            setGbp(res.data)
         })
       axios.get('http://localhost:3100/api/today/aed')
         .then(res => {
-            setAed(res.data[1])
+            setAed(res.data)
         })
       axios.get('http://localhost:3100/api/today/hkd')
         .then(res => {
-            setHkd(res.data[1])
+            setHkd(res.data)
         })
   },[])
 

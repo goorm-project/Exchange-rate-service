@@ -20,27 +20,31 @@ function CurrencyConverter() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3100/api/today/'+fromCountry.toLowerCase())
-            .then(res => {
-                if(fromCountry==='JPY_100'){
-                    let temp = (res.data[1].deal_bas_r)/100
-                    setFromRate(temp)
-                }else{
-                setFromRate(res.data[1].deal_bas_r)
-                }
-            })
+        if (fromCountry !== '___') {
+            axios.get('http://localhost:3100/api/today/'+fromCountry.toLowerCase())
+                .then(res => {
+                    if(fromCountry==='JPY_100'){
+                        let temp = (res.data.deal_bas_r)/100
+                        setFromRate(temp)
+                    }else{
+                    setFromRate(res.data.deal_bas_r)
+                    }
+                })
+            }
     },[fromCountry])
 
     useEffect(() => {
-        axios.get('http://localhost:3100/api/today/'+toCountry.toLowerCase())
-            .then(res => {
-                if(toCountry==='JPY_100'){
-                    let temp = (res.data[1].deal_bas_r)/100
-                    setToRate(temp)
-                }else{
-                setToRate(res.data[1].deal_bas_r)
-                }
-            })
+        if (toCountry !== '___') {
+            axios.get('http://localhost:3100/api/today/'+toCountry.toLowerCase())
+                .then(res => {
+                    if(toCountry==='JPY_100'){
+                        let temp = (res.data.deal_bas_r)/100
+                        setToRate(temp)
+                    }else{
+                    setToRate(res.data.deal_bas_r)
+                    }
+                })
+            }
     },[toCountry])
 
     function calculator (from, to, userInput) {
