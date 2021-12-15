@@ -3,126 +3,214 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { COUNTRIES_DATA } from "../data/countries_data";
 import HEX_DATA from "../data/countries_hex_data.json";
 import Globe from "react-globe.gl";
+import axios from "axios";
 
 export default function CustomGlobe( props ) {
 
+  const [eur,setEur] = useState({});
+  const [cad,setCad] = useState({});
+  const [aud,setAud] = useState({});
+  const [krw,setKrw] = useState({});
+  const [jpy,setJpy] = useState({});
+  const [cny,setCny] = useState({});
+  const [gbp,setGbp] = useState({});
+  const [usd,setUsd] = useState({});
+  const [hkd,setHkd] = useState({});
+  const [aed,setAed] = useState({});
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/eur')
+          .then(res => {
+            setEur(res.data[1])
+          })
+  },[])
+  
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/cad')
+          .then(res => {
+              setCad(res.data[1])
+          })
+  },[])
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/aud')
+          .then(res => {
+              setAud(res.data[1])
+          })
+  },[])
+
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/cny')
+          .then(res => {
+              setCny(res.data[1])
+          })
+  },[])
+
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/krw')
+          .then(res => {
+              setKrw(res.data[1])
+          })
+  },[])
+
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/jpy_100')
+          .then(res => {
+              setJpy(res.data[1])
+          })
+  },[])
+
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/usd')
+          .then(res => {
+              setUsd(res.data[1])
+          })
+  },[])
+
+  useEffect(() => {
+    axios.get('http://localhost:3100/api/today/gbp')
+        .then(res => {
+            setGbp(res.data[1])
+        })
+  },[])
+
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/aed')
+          .then(res => {
+              setAed(res.data[1])
+          })
+  },[])
+
+
+  useEffect(() => {
+      axios.get('http://localhost:3100/api/today/hkd')
+          .then(res => {
+              setHkd(res.data[1])
+          })
+  },[])
 
 const labelsData = [
 
-  { name: "EUROPE",
-    lat: 46.227638,
-    lng: 2.213749, 
-    size: 1, 
-    color: "yellow",
-    code: "EUR",
-    updateDate : props.date,
-    ttb : props.eurTtb,
-    tts : props.eurTts,
+  { name: eur.name,
+    lat: eur.lat,
+    lng: eur.lng, 
+    size: props.size, 
+    color: props.color,
+    code: eur.code,
+    updateDate : String(eur.date).slice(0,10),
+    ttb : eur.ttb,
+    tts : eur.tts,
   },
   {
-    name: "Canada",
-    lat: 56.130366,
-    lng: -106.34677099999999,
-    size: 1,
-    color: "white",
-    code: "CAD",
-    updateDate : props.date,
-    ttb : props.cadTtb,
-    tts : props.cadTts,
+    name: cad.name,
+    lat: cad.lat,
+    lng: cad.lng,
+    size: props.size,
+    color: props.color,
+    code: cad.code,
+    updateDate : String(cad.date).slice(0,10),
+    ttb : cad.ttb,
+    tts : cad.tts,
 
   },
   {
-      name: "Australia",
-      lat: -25.274398,
-      lng: 133.775136,
-      size: 1,
-      color: "white",
-      code: "AUD",
-      updateDate : props.date,
-      ttb : props.audTtb,
-      tts : props.audTts,
+      name: aud.name,
+      lat: aud.lat,
+      lng: aud.lng,
+      size: props.size,
+      color: props.color,
+      code: aud.code,
+      updateDate : String(aud.date).slice(0,10),
+      ttb : aud.ttb,
+      tts : aud.tts,
 
   },
   {
-      name: "South Korea",
-      lat: 35.907757000000004,
-      lng: 127.766922,
-      size: 1,
-      color: "white",
-      code: "WON",
-      updateDate : props.date,
-      ttb : props.krwTtb,
-      tts : props.krwTts,
+      name: krw.name,
+      lat: krw.lat,
+      lng: krw.lng,
+      size: props.size,
+      color: props.color,
+      code: krw.code,
+      updateDate : String(krw.date).slice(0,10),
+      ttb : krw.ttb,
+      tts : krw.tts,
   },
   {
-    name: "Japan",
-    lat: 36.204824,
-    lng: 138.252924,
-    size: 1,
-    color: "white",
-    code: "JPY(100)",
-    updateDate : props.date,
-    ttb : props.jpyTtb,
-    tts : props.jpyTts,
+    name: jpy.name,
+    lat: jpy.lat,
+    lng: jpy.lng,
+    size: props.size,
+    color: props.color,
+    code: jpy.code,
+    updateDate : String(jpy.date).slice(0,10),
+    ttb : jpy.ttb,
+    tts : jpy.tts,
  },
   {
-      name: "China",
-      lat: 35.86166,
-      lng: 104.195397,
-      size: 1,
-      color: "white",
-      code: "CNY",
-      updateDate : props.date,
-      ttb : props.cnyTtb,
-      tts : props.cnyTts,
+      name: cny.name,
+      lat: cny.lat,
+      lng: cny.lng,
+      size: props.size,
+      color: props.color,
+      code: cny.code,
+      updateDate : String(cny.date).slice(0,10),
+      ttb : cny.ttb,
+      tts : cny.tts,
 
   },
   {
-      name: "United Kingdom",
-      lat: 55.378051,
-      lng: -3.435973,
-      size: 1,
-      color: "white",
-      code: "GBP",
-      updateDate : props.date,
-      ttb : props.gbpTtb,
-      tts : props.gbpTts,
+      name: gbp.name,
+      lat: gbp.lat,
+      lng: gbp.lng,
+      size: props.size,
+      color: props.color,
+      code: gbp.code,
+      updateDate : String(gbp.date).slice(0,10),
+      ttb : gbp.ttb,
+      tts : gbp.tts,
 
   },
   {
-      name: "Hong Kong",
-      lat: 22.396428,
-      lng: 114.109497,
-      size: 1,
-      color: "white",
-      code: "HKD",
-      updateDate : props.date,
-      ttb : props.hkdTtb,
-      tts : props.hkdTts,
+      name: hkd.name,
+      lat: hkd.lat,
+      lng: hkd.lng,
+      size: props.size,
+      color: props.color,
+      code: hkd.code,
+      updateDate : hkd.date,
+      ttb : hkd.ttb,
+      tts : hkd.tts,
 
   },
   {
-      name: "United States",
-      lat: 42.813297,
-      lng: -106.34677099999999,
-      size: 1,
-      color: "white",
-      code: "USD",
-      updateDate : props.date,
-      ttb : props.usdTtb,
-      tts : props.usdTts,
+      name: usd.name,
+      lat: usd.lat,
+      lng: usd.lng,
+      size: props.size,
+      color: props.color,
+      code: usd.code,
+      updateDate : usd.date,
+      ttb : usd.ttb,
+      tts : usd.tts,
 
   },
   {
-      name: "United Arab Emirates",
-      lat: 23.424076,
-      lng: 53.847818,
-      size : 1,
-      color: "white",
-      code: "AED",
-      updateDate : props.date,
-      ttb : props.aedTtb,
-      tts : props.aedTts,
+      name: aed.name,
+      lat: aed.lat,
+      lng: aed.lng,
+      size : props.size,
+      color: props.color,
+      code: aed.code,
+      updateDate : aed.date,
+      ttb : aed.ttb,
+      tts : aed.tts,
 
     },
 ];

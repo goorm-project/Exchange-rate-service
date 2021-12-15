@@ -16,7 +16,7 @@ function LineGraph() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://k8s-eksweb-backendi-e94dfcbac2-406838544.ap-northeast-2.elb.amazonaws.com/api/alltime/ '+targetCountry.toLowerCase())
+        axios.get('http://localhost:3100/api/alltime/ '+targetCountry.toLowerCase())
         .then(res => {
             const temp = res.data
             temp.map((day) => {

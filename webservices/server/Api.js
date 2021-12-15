@@ -3,19 +3,19 @@ const app = express();
 const { Client } = require("pg");
 const Query = require('pg').Query
 const cors = require('cors');
-const Auth = "eks-goorm-rds.cbn4atioh7jm.ap-northeast-2.rds.amazonaws.com"
+const Auth = 'database-2.cunn3lppmlk9.ap-northeast-2.rds.amazonaws.com'
 
 const PORT = 3100;
-const HOST = '0.0.0.0';
+const HOST = 'localhost';
 
 app.use(cors());
 
 //connect with db
 var client = new Client({ 
-    user : 'goormuser',
+    user : 'postgres',
     host : Auth,
-    database : "exchangerate",
-    password : "sMryjYDSArfKCiXj",
+    database : "ExchangeRate",
+    password : "12341234",
     port : 5432, })
 
 client.connect(err => { 
@@ -35,9 +35,8 @@ function getToday(){
 
 app.get('/api/today/:currencyCode', function(req, res, next) {
 
-    today = getToday()
-
-    const query = new Query("SELECT * FROM " +req.params.currencyCode+  " ORDER BY date DESC LIMIT 1");
+    today = getToday()      
+    const query = new Query("SELECT * FROM (SELECT * , '" +req.params.currencyCode+ "' as cnt FROM "+ req.params.currencyCode +" ORDER BY date DESC LIMIT 1) as temp, country as c" + " WHERE temp.cnt = lower(c.code)");
     client.query(query)
         
     var rows = [];
@@ -84,6 +83,31 @@ app.get('/api/alltime/:currencyCode', function(req, res, next) {
 
 });
 
+
+app.get('/api/countrydata', function(req, res, next) {
+    
+    const query = new Query("SELECT * FROM country ");
+    client.query(query)
+    
+    var rows = [];
+    query.on("row",row=>{
+          rows.push(row);
+     });
+
+    query.on('end', () => 
+     {        
+       console.log(rows);
+       console.log('query done')
+       res.send(rows);
+       res.status(200).end();
+
+    });
+
+    query.on('error', err => {
+         console.error(err.stack)
+    });
+
+});
 
 app.listen(PORT, HOST,() => {
     console.log(`Running on http://${HOST}:${PORT}`);
