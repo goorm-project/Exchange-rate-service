@@ -23,76 +23,42 @@ export default function CustomGlobe( props ) {
           .then(res => {
             setEur(res.data[1])
           })
-  },[])
-  
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/cad')
           .then(res => {
               setCad(res.data[1])
           })
-  },[])
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/aud')
           .then(res => {
               setAud(res.data[1])
           })
-  },[])
-
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/cny')
           .then(res => {
               setCny(res.data[1])
           })
-  },[])
-
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/krw')
           .then(res => {
               setKrw(res.data[1])
           })
-  },[])
-
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/jpy_100')
           .then(res => {
               setJpy(res.data[1])
           })
-  },[])
-
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/usd')
           .then(res => {
               setUsd(res.data[1])
           })
-  },[])
-
-  useEffect(() => {
-    axios.get('http://localhost:3100/api/today/gbp')
+      axios.get('http://localhost:3100/api/today/gbp')
         .then(res => {
             setGbp(res.data[1])
         })
-  },[])
-
-
-  useEffect(() => {
       axios.get('http://localhost:3100/api/today/aed')
-          .then(res => {
-              setAed(res.data[1])
-          })
-  },[])
-
-
-  useEffect(() => {
+        .then(res => {
+            setAed(res.data[1])
+        })
       axios.get('http://localhost:3100/api/today/hkd')
-          .then(res => {
-              setHkd(res.data[1])
-          })
+        .then(res => {
+            setHkd(res.data[1])
+        })
   },[])
 
 const labelsData = [

@@ -60,7 +60,6 @@ function CurrencyConverter() {
         }
     }
 
-
     return (
         <div id = 'converter' style = {{textAlign : 'center', paddingBottom : '15%'}}>
             <h1 >환전 금액 계산기
@@ -82,7 +81,6 @@ function CurrencyConverter() {
                 <span style = {{color:'white' ,paddingRight : '4rem'}}>2. <span style = {{fontSize : '1.4rem'}}>보유</span>하신 화폐의 사용국가를 선택하세요!</span>
                 <div style = {{width : '210px'}}>
                 <ComboBox
-  
                     getTargetCountry = {getFromCountry}>
                 </ComboBox>
                 </div>
