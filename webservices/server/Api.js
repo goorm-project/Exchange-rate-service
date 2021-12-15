@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const { Client } = require("pg");
 const cors = require('cors');
+
 const EndPoint = 'database-2.cunn3lppmlk9.ap-northeast-2.rds.amazonaws.com'
 const PORT = 3100;
 const HOST = 'localhost';
