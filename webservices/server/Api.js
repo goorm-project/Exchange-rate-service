@@ -4,11 +4,10 @@ const { Client } = require("pg");
 const Query = require('pg').Query
 const cors = require('cors');
 const Auth = 'database-2.cunn3lppmlk9.ap-northeast-2.rds.amazonaws.com'
-
 const PORT = 3100;
 const HOST = 'localhost';
 
-app.use(cors());
+app.use(cors('localhost://3000'));
 
 //connect with db
 var client = new Client({ 

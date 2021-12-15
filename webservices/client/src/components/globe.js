@@ -184,7 +184,7 @@ const labelsData = [
       size: props.size,
       color: props.color,
       code: hkd.code,
-      updateDate : hkd.date,
+      updateDate : String(hkd.date).slice(0,10),
       ttb : hkd.ttb,
       tts : hkd.tts,
 
@@ -196,7 +196,7 @@ const labelsData = [
       size: props.size,
       color: props.color,
       code: usd.code,
-      updateDate : usd.date,
+      updateDate : String(usd.date).slice(0,10),
       ttb : usd.ttb,
       tts : usd.tts,
 
@@ -208,7 +208,7 @@ const labelsData = [
       size : props.size,
       color: props.color,
       code: aed.code,
-      updateDate : aed.date,
+      updateDate : String(aed.date).slice(0,10),
       ttb : aed.ttb,
       tts : aed.tts,
 

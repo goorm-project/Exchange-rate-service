@@ -20,7 +20,7 @@ function CurrencyConverter() {
     }
 
     useEffect(() => {
-        axios.get('http://k8s-eksweb-backendi-e94dfcbac2-406838544.ap-northeast-2.elb.amazonaws.com/api/today/'+fromCountry.toLowerCase())
+        axios.get('http://localhost:3100/api/today/'+fromCountry.toLowerCase())
             .then(res => {
                 if(fromCountry==='JPY_100'){
                     let temp = (res.data[1].deal_bas_r)/100
@@ -32,7 +32,7 @@ function CurrencyConverter() {
     },[fromCountry])
 
     useEffect(() => {
-        axios.get('http://k8s-eksweb-backendi-e94dfcbac2-406838544.ap-northeast-2.elb.amazonaws.com/api/today/'+toCountry.toLowerCase())
+        axios.get('http://localhost:3100/api/today/'+toCountry.toLowerCase())
             .then(res => {
                 if(toCountry==='JPY_100'){
                     let temp = (res.data[1].deal_bas_r)/100
