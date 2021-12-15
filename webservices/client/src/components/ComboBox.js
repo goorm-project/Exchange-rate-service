@@ -1,19 +1,15 @@
 import {React, useState} from "react";
 import Select from "react-select";
 
-
 function ComboBox(props) {
 
     const [choice, setChoice] = useState('');
-
     const sendTargetCountry = () =>{
       props.getTargetCountry(choice)
   }
-
     const onChange = (value) => {
         setChoice(value)
     }
-
     const options = [
         { value: 'AED', label: 'United Arab Emirates' },
         { value: 'AUD', label: 'Australia' },
@@ -30,7 +26,6 @@ function ComboBox(props) {
   return (
     <div className="App" style = {{fontSize : '1rem', color : '#000'}}>
       <Select
-
         options={options}
         value = {options.find(op => {
             return op.value === choice

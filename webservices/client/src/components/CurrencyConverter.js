@@ -62,27 +62,29 @@ function CurrencyConverter() {
 
     return (
         <div id = 'converter' style = {{textAlign : 'center', paddingBottom : '15%'}}>
-            <h1 >환전 금액 계산기
+            <h1 >
+                환전 금액 계산기
             </h1>
             <p style = {{paddingTop : '2rem',paddingBottom : '3rem'}}>
                 매매기준율을 기준으로 환전 예상 금액을 알려드립니다. 수수료를 포함하지 않은 금액입니다.
             </p>
 
             <div id = 'to_combobox' style = {{color:'#000', display : 'flex', justifyContent : 'center',  paddingBottom : '2rem'}}>
-                <span style = {{color:'white', paddingRight : '4rem'}}>1. <span style = {{fontSize : '1.4rem'}}>환전</span>하실 화폐의 사용국가를 선택하세요!</span>
+                <span style = {{color:'white', paddingRight : '4rem'}}>1. 
+                    <span style = {{fontSize : '1.4rem'}}>환전</span>하실 화폐의 사용국가를 선택하세요!</span>
                 <div style = {{width : '210px'}}>
-                <ComboBox
-                    getTargetCountry = {getToCountry}>
-                </ComboBox>
+                    <ComboBox
+                        getTargetCountry = {getToCountry}>
+                    </ComboBox>
                 </div>
             </div>
 
             <div id = 'from_combobox' style = {{color:'#000', display : 'inline-flex', justifyContent : 'space-between', paddingBottom : '2rem'}}>
                 <span style = {{color:'white' ,paddingRight : '4rem'}}>2. <span style = {{fontSize : '1.4rem'}}>보유</span>하신 화폐의 사용국가를 선택하세요!</span>
                 <div style = {{width : '210px'}}>
-                <ComboBox
-                    getTargetCountry = {getFromCountry}>
-                </ComboBox>
+                    <ComboBox
+                        getTargetCountry = {getFromCountry}>
+                    </ComboBox>
                 </div>
             </div>
 
@@ -99,9 +101,7 @@ function CurrencyConverter() {
                     > 
                     </input> {isJPY(toCountry)} 는 {calculator(fromRate,toRate,userInput)} {isJPY(fromCountry)}입니다.
                 </p>
-
             </div>
-
         </div>
     )
 }

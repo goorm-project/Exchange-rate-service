@@ -12,9 +12,7 @@ function Graph()
             <p>
                 차트를 확인하고 싶으신 국가를 선택해 주세요.
             </p>
-
             <div style = {{display : 'flex',justifyContent : 'center'}}> 
-
             <LineGraph></LineGraph>
             </div>
         </div>
