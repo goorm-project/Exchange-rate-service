@@ -23,18 +23,13 @@ client.connect(err => {
     else { console.log('success!') }
 });
 
-//get what date is it today
-function getToday(){
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
-}
-
-app.get('/api/today/:currencyCode', (req, res) => {
-    today = getToday()      
-    const query = `SELECT * FROM (SELECT * , '${req.params.currencyCode}' as cnt FROM ${req.params.currencyCode} ORDER BY date DESC LIMIT 1) as temp, country as c WHERE temp.cnt = lower(c.code);`
+app.get('/api/today/:currencyCode', (req, res) => {  
+    const query = `SELECT * 
+                    FROM (SELECT  * , '${req.params.currencyCode}' as country
+                        FROM  ${req.params.currencyCode}
+                        WHERE date = ( SELECT MAX(date)
+                                        FROM  ${req.params.currencyCode})) as temp, country as c 
+                    WHERE temp.country = lower(c.code);`
 
     client.query(query, (err,result) => {
         if(err) {
@@ -51,7 +46,7 @@ app.get('/api/today/:currencyCode', (req, res) => {
 //그래프 출력 위한 alltime API
 app.get('/api/alltime/:currencyCode', (req, res) => {
     
-    const query = `SELECT DISTINCT * FROM ${req.params.currencyCode} ORDER BY date`;
+    const query = `SELECT * FROM ${req.params.currencyCode}`;
     client.query(query, (err,result) => {
         if(err) {
             console.log(err.stack);

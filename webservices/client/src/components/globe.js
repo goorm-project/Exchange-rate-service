@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function CustomGlobe( props ) {
 
-  const [eur,setEur] = useState('');
+  const [eur,setEur] = useState({});
   const [cad,setCad] = useState({});
   const [aud,setAud] = useState({});
   const [krw,setKrw] = useState({});
