@@ -50,9 +50,9 @@ phases:
       - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./manifests/frontend-deployment.yaml
       - sed -i.bak 's#DATE_STRING#'"$DATE"'#' ./manifests/backend-deployment.yaml
       
-      - kubectl apply -f ./manifests/backend-deployment.yaml
-      - kubectl apply -f ./manifests/frontend-deployment.yaml
-      - kubectl apply -f ./manifests/backend-service.yaml
-      - kubectl apply -f ./manifests/frontend-service.yaml
-      - kubectl apply -f ./manifests/ingress.yaml
+      - kubectl -n eks-web apply -f ./manifests/backend-deployment.yaml
+      - kubectl -n eks-web apply -f ./manifests/frontend-deployment.yaml
+      - kubectl -n eks-web apply -f ./manifests/backend-service.yaml
+      - kubectl -n eks-web apply -f ./manifests/frontend-service.yaml
+      - kubectl -n eks-web apply -f ./manifests/ingress.yaml
 
